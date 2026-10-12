@@ -10,11 +10,11 @@ enum AuthError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .noClient: "No SmartThings OAuth client is configured."
-        case .notSignedIn: "Sign in to SmartThings to continue."
-        case .cancelled: "Sign-in was cancelled."
-        case .badCallback(let detail): "SmartThings didn't return an authorization code (\(detail))."
-        case .tokenEndpoint(let status, let body): "Token request failed (\(status)): \(body.prefix(200))"
+        case .noClient: String(localized: "No SmartThings OAuth client is configured.")
+        case .notSignedIn: String(localized: "Sign in to SmartThings to continue.")
+        case .cancelled: String(localized: "Sign-in was cancelled.")
+        case .badCallback(let detail): String(localized: "SmartThings didn't return an authorization code (\(detail)).")
+        case .tokenEndpoint(let status, let body): String(localized: "Token request failed (\(status)): \(String(body.prefix(200)))")
         }
     }
 

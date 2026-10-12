@@ -16,6 +16,8 @@ cp "$(swift build -c release --arch arm64 --show-bin-path)/WindFreeBar" "$APP/Co
 # The icon is generated (scripts/make-icon.swift) on first build.
 [[ -f build/AppIcon.icns ]] || swift scripts/make-icon.swift build/AppIcon.icns
 cp build/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
+# English and Brazilian Portuguese; macOS picks one from the system's preferred languages.
+cp -R Localization/*.lproj "$APP/Contents/Resources/"
 
 cat > "$APP/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -27,6 +29,9 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
     <key>CFBundleDisplayName</key>       <string>WindFree Bar</string>
     <key>CFBundleExecutable</key>        <string>WindFreeBar</string>
     <key>CFBundleIconFile</key>          <string>AppIcon</string>
+    <key>CFBundleDevelopmentRegion</key> <string>en</string>
+    <key>CFBundleLocalizations</key>
+    <array><string>en</string><string>pt-BR</string></array>
     <key>CFBundlePackageType</key>       <string>APPL</string>
     <key>CFBundleShortVersionString</key><string>__VERSION__</string>
     <key>CFBundleVersion</key>           <string>__BUILD__</string>

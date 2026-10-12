@@ -5,7 +5,7 @@ struct DeviceSummary: Decodable, Identifiable, Hashable, Sendable {
     let label: String?
     let name: String?
     var id: String { deviceId }
-    var displayName: String { label ?? name ?? "Air conditioner" }
+    var displayName: String { label ?? name ?? String(localized: "Air conditioner") }
 }
 
 struct DeviceCommand: Encodable, Sendable {
@@ -29,9 +29,9 @@ enum APIError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .rateLimited: "SmartThings is rate limiting requests. Retrying shortly."
-        case .http(402, _), .http(403, _): "SmartThings refused the request. Your account may need an API plan."
-        case .http(let status, let body): "SmartThings returned \(status): \(body.prefix(160))"
+        case .rateLimited: String(localized: "SmartThings is rate limiting requests. Retrying shortly.")
+        case .http(402, _), .http(403, _): String(localized: "SmartThings refused the request. Your account may need an API plan.")
+        case .http(let status, let body): String(localized: "SmartThings returned \(status): \(String(body.prefix(160)))")
         }
     }
 }

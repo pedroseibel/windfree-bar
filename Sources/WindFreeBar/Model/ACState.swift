@@ -74,11 +74,11 @@ struct ACState: Equatable, Sendable {
 enum Labels {
     static func mode(_ m: String) -> String {
         switch m {
-        case "auto", "aIComfort": "Auto"
-        case "cool": "Cool"
-        case "dry": "Dry"
-        case "fan", "wind": "Fan"
-        case "heat": "Heat"
+        case "auto", "aIComfort": String(localized: "Auto", comment: "AC mode")
+        case "cool": String(localized: "Cool", comment: "AC mode")
+        case "dry": String(localized: "Dry", comment: "AC mode")
+        case "fan", "wind": String(localized: "Fan only", comment: "AC mode")
+        case "heat": String(localized: "Heat", comment: "AC mode")
         default: m.capitalized
         }
     }
@@ -95,33 +95,33 @@ enum Labels {
 
     static func fan(_ f: String) -> String {
         switch f {
-        case "auto": "Auto"
-        case "low": "Low"
-        case "medium": "Medium"
-        case "high": "High"
-        case "turbo": "Turbo"
+        case "auto": String(localized: "Auto", comment: "Fan speed")
+        case "low": String(localized: "Low", comment: "Fan speed")
+        case "medium": String(localized: "Medium", comment: "Fan speed")
+        case "high": String(localized: "High", comment: "Fan speed")
+        case "turbo": String(localized: "Turbo", comment: "Fan speed")
         default: f.capitalized
         }
     }
 
     static func swing(_ s: String) -> String {
         switch s {
-        case "fixed": "Off"
-        case "vertical": "Up–down"
-        case "horizontal": "Left–right"
-        case "all": "All"
+        case "fixed": String(localized: "swing.off", defaultValue: "Off", comment: "Swing: the vanes don't move")
+        case "vertical": String(localized: "Up–down", comment: "Swing")
+        case "horizontal": String(localized: "Left–right", comment: "Swing")
+        case "all": String(localized: "Both", comment: "Swing: up–down and left–right")
         default: s.capitalized
         }
     }
 
     static func preset(_ p: String) -> String {
         switch p {
-        case "off": "None"
-        case "sleep": "Sleep"
-        case "quiet": "Quiet"
-        case "speed": "Fast"
+        case "off": String(localized: "None", comment: "Preset")
+        case "sleep": String(localized: "Sleep", comment: "Preset")
+        case "quiet": String(localized: "Quiet", comment: "Preset")
+        case "speed": String(localized: "Fast", comment: "Preset")
         case "windFree": "WindFree"
-        case "windFreeSleep": "WindFree sleep"
+        case "windFreeSleep": String(localized: "WindFree sleep", comment: "Preset")
         default: p.capitalized
         }
     }

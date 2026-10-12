@@ -1,0 +1,90 @@
+/* Português (Brasil) */
+
+/* Panel */
+"Target temperature" = "Temperatura desejada";
+"Lower temperature" = "Diminuir a temperatura";
+"Raise temperature" = "Aumentar a temperatura";
+"Cool through the panel's micro-holes with the blade closed, so there's no direct draft" = "Resfria pelos microfuros do painel com a aleta fechada, sem vento direto";
+"Room %@" = "Ambiente %@";
+"Humidity %lld percent" = "Umidade de %lld por cento";
+"Drawing %lld watts" = "Consumindo %lld watts";
+"Power" = "Liga/desliga";
+"power.on" = "Ligado";
+"power.off" = "Desligado";
+"Turn on (⌘↩)" = "Ligar (⌘↩)";
+"Turn off (⌘↩)" = "Desligar (⌘↩)";
+"The unit is offline" = "O aparelho está offline";
+"Updated %@" = "Atualizado %@";
+"Settings" = "Ajustes";
+
+/* Tiles */
+"Mode" = "Modo";
+"Fan" = "Ventilação";
+"Swing" = "Oscilação";
+"Preset" = "Perfil";
+
+/* Modes */
+"Auto" = "Auto";
+"Cool" = "Frio";
+"Dry" = "Seco";
+"Fan only" = "Ventilar";
+"Heat" = "Quente";
+
+/* Fan speeds */
+"Low" = "Baixa";
+"Medium" = "Média";
+"High" = "Alta";
+"Turbo" = "Turbo";
+
+/* Swing */
+"swing.off" = "Desligada";
+"Up–down" = "Vertical";
+"Left–right" = "Horizontal";
+"Both" = "Ambas";
+
+/* Presets */
+"None" = "Nenhum";
+"Sleep" = "Sono";
+"Quiet" = "Silencioso";
+"Fast" = "Rápido";
+"WindFree sleep" = "WindFree sono";
+
+/* Settings menu */
+"Air conditioner" = "Ar-condicionado";
+"Display light" = "Luz do display";
+"Auto clean after cooling" = "Limpeza automática após resfriar";
+"Filter %lld%% used" = "Filtro %lld%% usado";
+"Filter %lld%% used, time to wash it" = "Filtro %lld%% usado, hora de lavar";
+"Open at Login" = "Abrir ao Iniciar Sessão";
+"Refresh" = "Atualizar";
+"Sign Out" = "Sair da Conta";
+"Quit WindFree Bar" = "Encerrar o WindFree Bar";
+
+/* Menu bar (VoiceOver) */
+"Air conditioner, %@" = "Ar-condicionado, %@";
+"Air conditioner, off" = "Ar-condicionado, desligado";
+
+/* Sign-in and setup */
+"Connecting…" = "Conectando…";
+"Finish signing in in your browser" = "Conclua o login no navegador";
+"Cancel" = "Cancelar";
+"No air conditioner found in this SmartThings location" = "Nenhum ar-condicionado encontrado neste local do SmartThings";
+"Connect SmartThings" = "Conectar ao SmartThings";
+"Sign in once and pick the location with your air conditioner. The app keeps itself signed in after that." = "Entre uma vez e escolha o local com o seu ar-condicionado. Depois disso, o app mantém a sessão sozinho.";
+"Sign in with SmartThings" = "Entrar com o SmartThings";
+"SmartThings OAuth client" = "Cliente OAuth do SmartThings";
+"Create one with `smartthings apps:create` (OAuth-In app, redirect URI `windfreebar://oauth`, scopes `r:devices:*` `x:devices:*` `r:locations:*`) and paste its credentials." = "Crie um com `smartthings apps:create` (app OAuth-In, URI de redirecionamento `windfreebar://oauth`, escopos `r:devices:*` `x:devices:*` `r:locations:*`) e cole as credenciais.";
+"Client ID" = "ID do cliente";
+"Client secret" = "Segredo do cliente";
+"Save" = "Salvar";
+"Quit" = "Encerrar";
+
+/* Errors */
+"No SmartThings OAuth client is configured." = "Nenhum cliente OAuth do SmartThings configurado.";
+"Sign in to SmartThings to continue." = "Entre no SmartThings para continuar.";
+"Sign-in was cancelled." = "O login foi cancelado.";
+"SmartThings didn't return an authorization code (%@)." = "O SmartThings não retornou um código de autorização (%@).";
+"Token request failed (%lld): %@" = "Falha ao obter o token (%lld): %@";
+"SmartThings is rate limiting requests. Retrying shortly." = "O SmartThings está limitando as requisições. Tentando de novo em instantes.";
+"SmartThings refused the request. Your account may need an API plan." = "O SmartThings recusou a requisição. Sua conta pode precisar de um plano de API.";
+"SmartThings returned %lld: %@" = "O SmartThings retornou %lld: %@";

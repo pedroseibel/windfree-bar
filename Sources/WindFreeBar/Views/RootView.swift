@@ -32,7 +32,7 @@ struct RootView: View {
 
 private struct StatusCard: View {
     let symbol: String
-    let title: String
+    let title: LocalizedStringKey
     var busy = false
 
     var body: some View {

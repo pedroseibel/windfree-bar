@@ -65,13 +65,13 @@ struct ControlPanel: View {
 
     private var tiles: some View {
         HStack(spacing: 8) {
-            OptionTile(title: "Mode", symbol: Labels.modeSymbol(state.mode), options: state.supportedModes,
+            OptionTile(title: String(localized: "Mode"), symbol: Labels.modeSymbol(state.mode), options: state.supportedModes,
                        selection: state.mode, label: Labels.mode) { store.setMode($0) }
-            OptionTile(title: "Fan", symbol: "fan", options: state.supportedFanModes, available: state.availableFanModes,
+            OptionTile(title: String(localized: "Fan"), symbol: "fan", options: state.supportedFanModes, available: state.availableFanModes,
                        selection: state.fanMode, label: Labels.fan) { store.setFan($0) }
-            OptionTile(title: "Swing", symbol: "fan.oscillation", options: state.supportedSwings,
+            OptionTile(title: String(localized: "Swing"), symbol: "fan.oscillation", options: state.supportedSwings,
                        selection: state.swing, label: Labels.swing) { store.setSwing($0) }
-            OptionTile(title: "Preset", symbol: Labels.presetSymbol(state.windFree ? "off" : state.optionalMode),
+            OptionTile(title: String(localized: "Preset"), symbol: Labels.presetSymbol(state.windFree ? "off" : state.optionalMode),
                        options: state.presets, selection: state.windFree ? "off" : state.optionalMode,
                        label: Labels.preset) { store.setPreset($0) }
         }
@@ -122,9 +122,10 @@ private struct PanelHeader: View {
             .tint(state.isOn ? accent : Color.gray.opacity(0.6))
             .disabled(!store.isOnline)
             .keyboardShortcut(.return, modifiers: .command)
-            .help(state.isOn ? "Turn off (⌘↩)" : "Turn on (⌘↩)")
+            .help(state.isOn ? Text("Turn off (⌘↩)") : Text("Turn on (⌘↩)"))
             .accessibilityLabel("Power")
-            .accessibilityValue(state.isOn ? "On" : "Off")
+            .accessibilityValue(state.isOn ? String(localized: "power.on", defaultValue: "On")
+                                           : String(localized: "power.off", defaultValue: "Off"))
             .accessibilityAddTraits(.isToggle)
         }
     }
@@ -150,17 +151,20 @@ struct SetpointControl: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            stepButton("minus", delta: -1, label: "Lower temperature")
+            stepButton("minus", delta: -1, label: String(localized: "Lower temperature"))
             Slider(value: Binding(get: { value }, set: set), in: range, step: step,
                    label: { Text("Target temperature") },
                    minimumValueLabel: { Text(Format.degrees(range.lowerBound)) },
                    maximumValueLabel: { Text(Format.degrees(range.upperBound)) },
                    tick: { SliderTick($0) })
+            // macOS draws a slider's label beside the track; the −/+ and the big number say it
+            // already, and VoiceOver still reads it.
+            .labelsHidden()
             .tint(accent)
             .font(.caption)
             .foregroundStyle(.secondary)
             .accessibilityValue(Format.temperature(value))
-            stepButton("plus", delta: 1, label: "Raise temperature")
+            stepButton("plus", delta: 1, label: String(localized: "Raise temperature"))
         }
         .sensoryFeedback(.levelChange, trigger: Int(value.rounded()))
     }
@@ -248,7 +252,9 @@ private struct PanelFooter: View {
                     Label("The unit is offline", systemImage: "wifi.slash")
                 } else if let updated = store.lastUpdated {
                     TimelineView(.periodic(from: .now, by: 15)) { _ in
-                        Text("Updated \(updated, format: .relative(presentation: .numeric))")
+                        // Formatted in the app's language (set on the root), so it reads
+                        // "Updated 2 minutes ago" or "Atualizado há 2 minutos", never a mix.
+                        Text("Updated \(updated, format: .relative(presentation: .named))")
                     }
                 }
             }
@@ -280,7 +286,11 @@ struct SettingsMenu: View {
                 Toggle("Auto clean after cooling", isOn: Binding(get: { clean }, set: { store.setAutoClean($0) }))
             }
             if let usage = store.state.filterUsage, let status = store.state.filterStatus {
-                Text("Filter \(Int(usage))% used\(status == "wash" ? ", time to wash it" : "")")
+                if status == "wash" {
+                    Text("Filter \(Int(usage))% used, time to wash it")
+                } else {
+                    Text("Filter \(Int(usage))% used")
+                }
             }
             Divider()
             Toggle("Open at Login", isOn: Binding(get: { launchAtLogin }, set: setLaunchAtLogin))

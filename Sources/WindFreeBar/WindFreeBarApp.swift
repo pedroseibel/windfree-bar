@@ -28,6 +28,7 @@ struct WindFreeBarApp: App {
         MenuBarExtra {
             RootView()
                 .environment(store)
+                .environment(\.locale, AppLanguage.locale)
         } label: {
             MenuBarLabel(state: store.state, ready: store.phase == .ready)
         }
@@ -36,6 +37,7 @@ struct WindFreeBarApp: App {
         Window("WindFree", id: "debug") {
             RootView()
                 .environment(store)
+                .environment(\.locale, AppLanguage.locale)
         }
         .windowResizability(.contentSize)
         .defaultLaunchBehavior(Self.debugWindow ? .presented : .suppressed)
@@ -56,6 +58,8 @@ struct MenuBarLabel: View {
             }
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(ready && state.isOn ? "Air conditioner, \(Format.degrees(state.setpoint))" : "Air conditioner, off")
+        .accessibilityLabel(ready && state.isOn
+                            ? String(localized: "Air conditioner, \(Format.degrees(state.setpoint))")
+                            : String(localized: "Air conditioner, off"))
     }
 }

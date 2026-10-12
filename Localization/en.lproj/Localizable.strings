@@ -1,0 +1,5 @@
+/* English is the development language: keys are the English text, except where a word needs
+   different translations in different places (gendered "Off" in Portuguese). */
+"swing.off" = "Off";
+"power.on" = "On";
+"power.off" = "Off";

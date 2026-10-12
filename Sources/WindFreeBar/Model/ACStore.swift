@@ -30,7 +30,7 @@ final class ACStore {
         }
     }
 
-    var deviceName: String { devices.first { $0.deviceId == deviceId }?.displayName ?? "Air conditioner" }
+    var deviceName: String { devices.first { $0.deviceId == deviceId }?.displayName ?? String(localized: "Air conditioner") }
 
     @ObservationIgnored private let tokens = TokenProvider()
     @ObservationIgnored private var api: SmartThingsAPI { SmartThingsAPI(tokens: tokens) }

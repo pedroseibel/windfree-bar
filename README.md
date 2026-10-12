@@ -2,12 +2,15 @@
 
 <h1 align="center">WindFree Bar</h1>
 
+<p align="center"><b>English</b> · <a href="README.pt-BR.md">Português (Brasil)</a></p>
+
 A native macOS menu bar app for controlling a Samsung air conditioner through SmartThings,
 built for WindFree units. One click from the menu bar instead of digging through the SmartThings
 app: power, temperature, mode, fan, swing, presets and WindFree, with live room readings.
 
 Built in SwiftUI for macOS 26 with standard controls, so it gets Liquid Glass, keyboard control
-and VoiceOver from the system.
+and VoiceOver from the system. Available in English and Brazilian Portuguese; it follows your
+Mac's language.
 
 ## Features
 
@@ -58,11 +61,11 @@ private OAuth app instead. You create it once with the SmartThings CLI.
 
 3. Install the app, either way:
 
-   - **Download** `WindFreeBar-x.y.z.zip` from
-     [Releases](https://github.com/pedroseibel/windfree-bar/releases/latest), unzip it and move
-     `WindFree Bar.app` to Applications. The app is ad-hoc signed, not notarized, so the first
-     launch is blocked: open **System Settings → Privacy & Security** and click **Open Anyway**
-     next to WindFree Bar.
+   - **Download** `WindFreeBar-x.y.z.dmg` from
+     [Releases](https://github.com/pedroseibel/windfree-bar/releases/latest), open it and drag
+     **WindFree Bar** onto **Applications**. The app is ad-hoc signed, not notarized, so the
+     first launch is blocked: open **System Settings → Privacy & Security** and click
+     **Open Anyway** next to WindFree Bar.
    - **Build from source**:
 
      ```sh
@@ -86,6 +89,7 @@ private OAuth app instead. You create it once with the SmartThings CLI.
 | `Sources/WindFreeBar/Model/ACState.swift` | The device status, parsed into what the UI needs |
 | `Sources/WindFreeBar/Model/ACStore.swift` | Polling policy, optimistic edits, the command queue |
 | `Sources/WindFreeBar/Views/` | The menu bar panel |
+| `Localization/` | English and Brazilian Portuguese strings |
 
 Each command updates the UI immediately and is kept as a pending edit until the unit reports
 the new value (or 12 s pass), so slow-to-report units don't make controls jump back. Commands go
@@ -115,10 +119,15 @@ Xcode's `actool`, so this is a flattened rendering of the same treatment.
 ## Development
 
 ```sh
-VERSION=1.0.0 scripts/package-release.sh          # zipped app for a release
+VERSION=1.0.0 scripts/package-release.sh          # disk image for a release (uses dmgbuild)
 swift build
 .build/out/Products/Debug/WindFreeBar --window    # the panel in a normal window
+open -n "build/WindFree Bar.app" --args -AppleLanguages '(en)'   # try a specific language
 ```
+
+Strings live in `Localization/<language>.lproj/Localizable.strings`. English is the development
+language, so its keys are the English text; add a language by adding a `.lproj` folder and listing
+it in `CFBundleLocalizations` in `scripts/build-app.sh`.
 
 `@State` is written `@ViewState` (a typealias to `SwiftUI.State` in `Views/ViewState.swift`):
 the SDK spells `@State` as a macro whose plugin ships only with Xcode, so the alias keeps the

@@ -1,0 +1,13 @@
+{
+  "appName": "windfree-bar-CHANGE-ME",
+  "displayName": "WindFree Bar",
+  "description": "macOS menu bar controller for a Samsung air conditioner",
+  "appType": "API_ONLY",
+  "classifications": ["CONNECTED_SERVICE"],
+  "singleInstance": true,
+  "oauth": {
+    "clientName": "WindFree Bar",
+    "scope": ["r:devices:*", "x:devices:*", "r:locations:*"],
+    "redirectUris": ["windfreebar://oauth"]
+  }
+}

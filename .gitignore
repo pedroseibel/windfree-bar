@@ -1,0 +1,7 @@
+.build/
+build/
+.swiftpm/
+*.xcodeproj/
+*.icns
+*.blend1
+.DS_Store

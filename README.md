@@ -12,8 +12,7 @@ Built in SwiftUI for macOS 26 with standard controls, so it gets Liquid Glass, k
 and VoiceOver from the system. Available in English and Brazilian Portuguese; it follows your
 Mac's language.
 
-<p align="center"><img src="docs/screenshot-pt-BR.png" width="418" alt="WindFree Bar's panel with the setpoint, WindFree switch, slider and modes"><br>
-<sub>Shown in Brazilian Portuguese; on an English Mac the panel is in English.</sub></p>
+<p align="center"><img src="docs/screenshot-en.png" width="418" alt="WindFree Bar's panel with the setpoint, WindFree switch, slider and modes"></p>
 
 ## Features
 

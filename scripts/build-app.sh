@@ -4,6 +4,8 @@
 #   scripts/build-app.sh --install  → also copies it to ~/Applications and relaunches it
 set -euo pipefail
 cd "${0:A:h}/.."
+VERSION=${VERSION:-1.0.0}
+BUILD=${BUILD:-$(git rev-list --count HEAD 2>/dev/null || echo 1)}
 
 swift build -c release --arch arm64
 
@@ -26,8 +28,8 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
     <key>CFBundleExecutable</key>        <string>WindFreeBar</string>
     <key>CFBundleIconFile</key>          <string>AppIcon</string>
     <key>CFBundlePackageType</key>       <string>APPL</string>
-    <key>CFBundleShortVersionString</key><string>1.0</string>
-    <key>CFBundleVersion</key>           <string>1</string>
+    <key>CFBundleShortVersionString</key><string>__VERSION__</string>
+    <key>CFBundleVersion</key>           <string>__BUILD__</string>
     <key>LSMinimumSystemVersion</key>    <string>26.0</string>
     <key>LSUIElement</key>               <true/>
     <key>NSHighResolutionCapable</key>   <true/>
@@ -42,6 +44,8 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 </dict>
 </plist>
 PLIST
+
+sed -i '' -e "s/__VERSION__/$VERSION/" -e "s/__BUILD__/$BUILD/" "$APP/Contents/Info.plist"
 
 codesign --force --sign - "$APP"
 # Register the windfreebar:// scheme so the OAuth redirect finds this copy.

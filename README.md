@@ -56,14 +56,21 @@ private OAuth app instead. You create it once with the SmartThings CLI.
    Note the **OAuth Client Id** and **OAuth Client Secret** it prints. The redirect URI is
    `windfreebar://oauth` and the scopes are `r:devices:*`, `x:devices:*` and `r:locations:*`.
 
-3. Build and install:
+3. Install the app, either way:
 
-   ```sh
-   scripts/build-app.sh --install
-   ```
+   - **Download** `WindFreeBar-x.y.z.zip` from
+     [Releases](https://github.com/pedroseibel/windfree-bar/releases/latest), unzip it and move
+     `WindFree Bar.app` to Applications. The app is ad-hoc signed, not notarized, so the first
+     launch is blocked: open **System Settings → Privacy & Security** and click **Open Anyway**
+     next to WindFree Bar.
+   - **Build from source**:
 
-   This builds `WindFree Bar.app`, copies it to `~/Applications`, registers the
-   `windfreebar://` URL scheme and launches it.
+     ```sh
+     scripts/build-app.sh --install
+     ```
+
+     This builds `WindFree Bar.app`, copies it to `~/Applications`, registers the
+     `windfreebar://` URL scheme and launches it.
 
 4. Click the air conditioner in the menu bar, paste the client ID and secret, then click
    **Sign in with SmartThings**. Your browser opens SmartThings' consent page; pick the location
@@ -108,6 +115,7 @@ Xcode's `actool`, so this is a flattened rendering of the same treatment.
 ## Development
 
 ```sh
+VERSION=1.0.0 scripts/package-release.sh          # zipped app for a release
 swift build
 .build/out/Products/Debug/WindFreeBar --window    # the panel in a normal window
 ```

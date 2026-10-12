@@ -8,5 +8,5 @@ VERSION=$VERSION scripts/build-app.sh
 codesign --verify --strict "build/WindFree Bar.app"
 ZIP="build/WindFreeBar-$VERSION.zip"
 rm -f "$ZIP"
-ditto -c -k --sequesterRsrc --keepParent "build/WindFree Bar.app" "$ZIP"
+ditto -c -k --keepParent "build/WindFree Bar.app" "$ZIP"
 shasum -a 256 "$ZIP"

@@ -13,6 +13,8 @@ Feito em SwiftUI para o macOS 26 com controles padrão do sistema, então ganha 
 controle por teclado e VoiceOver do próprio macOS. Disponível em português (Brasil) e inglês;
 segue o idioma do seu Mac.
 
+<p align="center"><img src="docs/screenshot-pt-BR.png" width="418" alt="Painel do WindFree Bar com temperatura, chave WindFree, controle deslizante e modos"></p>
+
 ## Recursos
 
 - **Ícone na barra de menus** mostra a temperatura desejada enquanto o aparelho está ligado.
